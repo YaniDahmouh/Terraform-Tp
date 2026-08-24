@@ -1,0 +1,36 @@
+---
+- name: Local_project ping itself
+  ansible.builtin.ping:
+    data: pong
+
+- name: Local_project open Docker
+  ansible.builtin.shell: open -a Docker
+  changed_when: false
+
+- name: Local_project wait for Docker to be ready
+  ansible.builtin.command: docker info
+  register: local_project_docker_info
+  retries: 30
+  delay: 5
+  until: local_project_docker_info.rc == 0
+  changed_when: false
+
+- name: Local_project docker pull
+  community.docker.docker_image_pull:
+    name: "{{ local_project_hub_repo_name }}"
+    tag: latest
+    pull: always
+- name: Local_project docker container
+  community.docker.docker_container:
+    name: shop
+    ports:
+      - 80:80
+    image: "{{ local_project_hub_repo_name }}"
+- name: Local_project check http response
+  ansible.builtin.uri:
+    url: "http://localhost"
+    method: GET
+  retries: 100
+  delay: 5
+  register: local_project_result
+  until: local_project_result.status == 200

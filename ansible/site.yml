@@ -1,0 +1,5 @@
+---
+- name: Localhost Playbook
+  hosts: localhost
+  roles:
+    - local_project

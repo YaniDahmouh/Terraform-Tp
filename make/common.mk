@@ -11,6 +11,25 @@ WARNING_COLOR := \033[33;1m
 RESET_COLOR := \033[m
 # ====================================================
 
+.PHONY: check-tools check-list
+
+check-tools:
+	@for software in terraform ansible gh git aws; do
+		if command -v "$$software" >/dev/null 2>&1; then
+				echo -e "$(SUCCESS_COLOR) $$software present $(RESET_COLOR)"
+		else
+				if command --version "$$software"; then
+					echo -e "$(SUCCESS_COLOR) $$software present $(RESET_COLOR)"
+				else
+					echo -e "$(ERROR_COLOR) $$software absent $(RESET_COLOR)"
+				fi
+		fi
+	done
+
+
+require-%:
+	@[ command -v $($^)] || { "$(ERROR_COLOR) $$software $^ required $(RESET_COLOR)"; exit 1 }
+
 
 help: ## shows this help
 	@echo -e "\n$(UI_COLOR)=================MENU===========================$(RESET_COLOR)\n"
