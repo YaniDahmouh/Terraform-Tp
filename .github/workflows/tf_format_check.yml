@@ -14,8 +14,13 @@ jobs:
     steps:
       - uses: actions/checkout@v7
         with:
-          repository: ${{ github.repository }}
+          repository: "${{ github.repository }}"
           fetch-depth: 1
+
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: ${{ env.TF_VERSION }}
+
       - run: |
           make tf.fmt.ci
         continue-on-error: false
