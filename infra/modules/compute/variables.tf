@@ -1,21 +1,9 @@
 variable "username" {
   type = string
 }
+
 variable "environment" {
-  type        = string
-  description = "dev|staging|prod"
-
-  # We first check if the admin's input is in lowercase
-  validation {
-    condition     = can(regex("^[a-z]+$", var.environment))
-    error_message = "Must be a lowercase"
-  }
-
-  # Then we check if the admin's input is among dev, staging and pro
-  validation {
-    condition     = contains(["dev", "staging", "prod"], var.environment)
-    error_message = "Environment of dev staging and prod"
-  }
+  type = string
 }
 
 variable "instance_ami" {

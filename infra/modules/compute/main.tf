@@ -31,4 +31,8 @@ resource "aws_instance" "this" {
 
   # =========  🚨 IS IP PUBLIC OR PRIVATE ===================
   associate_public_ip_address = var.has_public_ip
+
+  tags = {
+    Name = "${local.prefix}-vm"
+  }
 }
