@@ -36,3 +36,9 @@ variable "vpc_id" {
 variable "route_table_id" {
   type = string
 }
+
+
+variable "has_public_ip" {
+  type    = bool
+  default = false # fail-safe default
+}

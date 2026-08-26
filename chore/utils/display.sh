@@ -1,4 +1,4 @@
-source "$(dirname "${BASH_SOURCE[0]}")/../constants/colors.sh"
+source "$(dirname ${BASH_SOURCE[0]})/../constants/colors.sh"
 
 
 display_msg() {

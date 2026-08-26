@@ -44,5 +44,5 @@ module "compute_1" {
   sg_ids        = [module.sg_1.sg_id]
   subnet_id     = module.subnet_1.sb_id
   public_key    = file(pathexpand("~/.ssh/terraform-ipssi.pub"))
-
+  has_public_ip = var.has_public_ip
 }
