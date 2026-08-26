@@ -1,11 +1,3 @@
-variable "username" {
-  type = string
-}
-
-variable "environment" {
-  type = string
-}
-
 variable "instance_ami" {
   type        = string
   description = "AMI of EC2 Instance"
@@ -34,4 +26,15 @@ variable "public_key" {
 variable "has_public_ip" {
   type    = bool
   default = false # fail-safe default
+}
+
+
+
+
+variable "username" {
+  type = string
+}
+
+variable "environment" {
+  type = string
 }

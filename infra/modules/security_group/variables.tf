@@ -5,3 +5,14 @@ variable "username" {
 variable "environment" {
   type = string
 }
+
+variable "vpc_id" {
+  type = string
+
+}
+
+
+variable "admin_ip" {
+  type      = string
+  sensitive = true
+}
