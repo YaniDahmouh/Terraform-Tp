@@ -1,0 +1,5 @@
+---
+nginx_port: 80
+nginx_server_name: "_"
+nginx_doc_root: "/var/www/html"
+app_title: "TP Ansible Engine-X - Dahmouh"

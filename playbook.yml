@@ -1,0 +1,7 @@
+---
+- name: Deploiement Engine-X et durcissement serveur
+  hosts: webservers
+  become: yes
+  roles:
+    - security
+    - nginx

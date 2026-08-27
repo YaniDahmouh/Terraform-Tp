@@ -1,8 +1,14 @@
-*.tfvars
 .env
-.terraform
+*.tfvars
+*tfvars*
 *.tfstate
 *tfstate*
-tfplan
+*tfplan
 *tfplan*
+.terraform
 .ansible
+inventory.ini
+.ansible.cfg
+inventory.ini
+*.pem
+*.key
