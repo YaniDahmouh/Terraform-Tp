@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ app_title }}</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #0f172a 100%);
+            color: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .container {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 2.5rem;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+        }
+        .flag-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        .flag-box {
+            width: 72px;
+            height: 48px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+        }
+        /* Drapeau France */
+        .flag-fr .stripe-blue { width: 33.33%; background-color: #002395; }
+        .flag-fr .stripe-white { width: 33.33%; background-color: #ffffff; }
+        .flag-fr .stripe-red { width: 33.33%; background-color: #ed2939; }
+
+        /* Drapeau Algérie */
+        .flag-dz {
+            position: relative;
+        }
+        .flag-dz .half-green { width: 50%; background-color: #006633; }
+        .flag-dz .half-white { width: 50%; background-color: #ffffff; }
+        .flag-dz-symbol {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 26px;
+            height: 26px;
+        }
+        .crescent {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #d21034;
+            top: 1px;
+            left: 1px;
+        }
+        .crescent-cut {
+            position: absolute;
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            top: 3.5px;
+            left: 6px;
+            background-color: inherit;
+        }
+        .flag-dz .half-green ~ .flag-dz-symbol .crescent-cut {
+            background-color: #ffffff;
+        }
+        .star {
+            position: absolute;
+            top: 50%;
+            left: 58%;
+            transform: translate(-50%, -50%);
+            color: #d21034;
+            font-size: 11px;
+            line-height: 1;
+        }
+        /* Cœur animé */
+        .heart {
+            font-size: 2rem;
+            color: #ef4444;
+            animation: pulse 1.4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.25); }
+        }
+        h1 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 1.75rem;
+        }
+        .counter-card {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .counter-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #64748b;
+            font-weight: 600;
+        }
+        #counter-value {
+            font-size: 3.75rem;
+            font-weight: 900;
+            color: #f8fafc;
+            line-height: 1.1;
+            margin: 0.5rem 0;
+            text-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+        }
+        .btn-group {
+            display: flex;
+            gap: 0.75rem;
+        }
+        button {
+            flex: 1;
+            padding: 0.85rem 1.25rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+        }
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.08);
+            color: #cbd5e1;
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.14);
+            color: #ffffff;
+        }
+        button:active {
+            transform: scale(0.96);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="flag-header">
+            <!-- Drapeau France -->
+            <div class="flag-box flag-fr">
+                <div class="stripe-blue"></div>
+                <div class="stripe-white"></div>
+                <div class="stripe-red"></div>
+            </div>
+
+            <!-- Cœur -->
+            <div class="heart">❤️</div>
+
+            <!-- Drapeau Algérie -->
+            <div class="flag-box flag-dz">
+                <div class="half-green"></div>
+                <div class="half-white"></div>
+                <div class="flag-dz-symbol">
+                    <div class="crescent"></div>
+                    <div class="crescent-cut"></div>
+                    <div class="star">★</div>
+                </div>
+            </div>
+        </div>
+
+        <h1>{{ app_title }}</h1>
+        <p>Service Engine-X orchestré par Ansible & Jinja2</p>
+
+        <div class="counter-card">
+            <div class="counter-label">Compteur dynamique</div>
+            <div id="counter-value">0</div>
+        </div>
+
+        <div class="btn-group">
+            <button class="btn-primary" id="btn-inc">+1 Incrémenter</button>
+            <button class="btn-secondary" id="btn-reset">Réinitialiser</button>
+        </div>
+    </div>
+
+    <script>
+        let count = 0;
+        const display = document.getElementById('counter-value');
+        const btnInc = document.getElementById('btn-inc');
+        const btnReset = document.getElementById('btn-reset');
+
+        btnInc.addEventListener('click', () => {
+            count++;
+            display.textContent = count;
+        });
+
+        btnReset.addEventListener('click', () => {
+            count = 0;
+            display.textContent = count;
+        });
+    </script>
+</body>
+</html>
