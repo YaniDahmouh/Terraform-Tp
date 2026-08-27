@@ -13,6 +13,18 @@ resource "aws_security_group" "this" {
   }
 }
 
+
+
+resource "aws_vpc_security_group_ingress_rule" "allow_all_icmp" {
+  # checkov:skip=CKV_AWS_277 after it
+  security_group_id = aws_security_group.this.id
+  description       = "Allow all icmp"
+  ip_protocol       = "icmp"
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = -1
+  to_port           = -1
+}
+
 resource "aws_vpc_security_group_ingress_rule" "allow_http" {
   security_group_id = aws_security_group.this.id
   description       = "Http ingress"

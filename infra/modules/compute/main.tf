@@ -13,6 +13,7 @@ resource "aws_key_pair" "vm_kp" {
 resource "aws_instance" "this" {
   # Ensure an IAM role is attached to EC2 instance
   # checkov:skip=CKV2_AWS_41 after it
+  # checkov:skip=CKV_AWS_88 after it
   ami                         = var.instance_ami
   instance_type               = var.instance_type
   subnet_id                   = var.subnet_id

@@ -1,5 +1,5 @@
 .PHONY: tf.fmt.ci tf.fmt tf.init.liu tf.ok tf.scan tf.sec \
-tf.lint tf.lint.fix tf.plan tf.sec.plan tf.apply
+tf.lint tf.lint.fix tf.plan tf.sec.plan tf.apply tf.out
 
 tf.init.liu:
 	@terraform -chdir=$(TF_ENV_DIR) init -lock=false -input=false -upgrade
@@ -30,3 +30,6 @@ tf.sec.plan:
 
 tf.apply: tf.sec.plan
 	@terraform -chdir=$(TF_ENV_DIR) apply tfplan
+
+tf.out:
+	@terraform -chdir=$(TF_ENV_DIR) output
